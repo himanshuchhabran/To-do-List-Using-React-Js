@@ -23,3 +23,5 @@
 
 //To redirect to any location 
 //Use location.href = "url"
+
+
