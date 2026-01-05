@@ -84,3 +84,31 @@ const  myCoding = [
 myCoding.forEach( (item)=>{
     console.log(item.langaugeFileName)
 })
+
+
+//foreach does not return anything so we can use filter or reduce or map
+
+//filter
+
+const myNums = [1,2,3,4,5,6,7,8,9,10]
+
+const newNums = myNums.filter( (num)=> num>4 )
+
+console.log(newNums);
+
+
+//map
+const newnumbers = myNums.map( (num)=> num + ` hi from ${num}` )
+console.log(newnumbers);
+
+//chaining
+const newnumbers1 = myNums
+                        .map((num)=> num+10)
+                        .map((num) =>num+1)
+                        .filter((num)=>num>20)
+
+console.log(newnumbers1);
+
+//reduce
+const reducedNums = myNums.reduce((num,accc)=> num+accc ,0)
+console.log(reducedNums)
