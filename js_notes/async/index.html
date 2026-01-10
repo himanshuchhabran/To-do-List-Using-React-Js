@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Himanshu Chhabra</h1>
+    <button id="stop">Stop</button>
+    <script>
+        const timeout = setTimeout(function(){
+            console.log("hi this is timeout function")
+        },2000)
+        //i want to stop the timeout when i click on stop button
+        document.querySelector("#stop").addEventListener("click",()=>{
+            clearTimeout(timeout)
+        })
+        
+    </script>
+</body>
+</html>
