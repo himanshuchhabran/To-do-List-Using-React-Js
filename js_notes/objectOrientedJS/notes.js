@@ -123,6 +123,21 @@ car.start(); // Engine ignited. Toyota car started.
 //parts of oop  
 //object literal
 
-//constructor function
+//constructor function - new keyword ka use krna pdta h jo automatic ek new copy banata h
+
+// const promise1 = new Promise();
+
+function User(username,loginCount,isLoggedIn){
+    this.username = username;
+    this.loginCount = loginCount;
+    this.isLoggedIn = isLoggedIn;
+
+    return this;
+}
+
+
+const user1 = User('john_doe',5,true);
+console.log(user1);
+
 
 //prototype
