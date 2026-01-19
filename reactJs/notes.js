@@ -24,3 +24,8 @@
 //overall, react fiber ne react ki performance aur responsiveness ko kaafi improve kiya hai, especially for complex applications
 
 
+//use state ->multiple updates karne h to set function me callback pass karna hoga 
+setCounter(prevCounter=> prevCounter +1);
+setCounter(prevCounter=> prevCounter +1);
+setCounter(prevCounter=> prevCounter +1);
+setCounter(prevCounter=> prevCounter +1);
