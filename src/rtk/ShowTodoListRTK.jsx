@@ -1,38 +1,41 @@
-import React, { useState, useContext } from 'react'
-import { TodoContext } from '../context/TodoContext'
+import React, { useState } from 'react'
+import { useSelector, useDispatch } from 'react-redux'
+import { addTodo, toggleTodo, removeTodo } from './TodoSlice'
 
-const ShowTodoList = () => {
-  const { todos, addTodo, toggleTodo, removeTodo } = useContext(TodoContext)
+const ShowTodoListRTK = () => {
+  const todos = useSelector((s) => s.todos)
+  const dispatch = useDispatch()
   const [text, setText] = useState('')
 
   const submit = (e) => {
     e.preventDefault()
     const value = text.trim()
     if (!value) return
-    addTodo(value)
+    dispatch(addTodo(value))
     setText('')
   }
 
   return (
-    <div className="min-h-screen bg-black p-4 sm:p-8 flex items-start justify-center">
+    <div className="min-h-screen bg-gray-50 p-4 sm:p-8 flex items-start justify-center">
       <div className="w-full max-w-2xl">
         <header className="mb-6">
-          <h1 className="text-2xl sm:text-3xl font-semibold text-gray-200 text-center">To-Do List</h1>
+          <h1 className="text-2xl sm:text-3xl font-semibold text-gray-800 text-center">To‑Do List (RTK)</h1>
+          <p className="text-sm text-gray-500 text-center">Redux Toolkit + react-redux implementation</p>
         </header>
 
         <form onSubmit={submit} className="flex gap-2 mb-4">
           <input
-            className="flex-1 px-4 py-2 rounded-md bg-white border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
+            className="flex-1 px-4 py-2 rounded-md border border-gray-200 focus:outline-none focus:ring-2 focus:ring-indigo-400"
             placeholder="Add a new task"
             value={text}
             onChange={(e) => setText(e.target.value)}
           />
-          <button className="px-4 py-2 bg-gray-600 text-gray-200 rounded-md hover:bg-indigo-700">Add</button>
+          <button className="px-4 py-2 bg-indigo-600 text-white rounded-md hover:bg-indigo-700">Add</button>
         </form>
 
         <section className="bg-white shadow rounded-md divide-y divide-gray-100 overflow-hidden">
-          {todos?.length === 0 && (
-            <div className="p-6 text-center text-gray-500">No tasks yet add your first task.</div>
+          {todos.length === 0 && (
+            <div className="p-6 text-center text-gray-500">No tasks yet — add your first task.</div>
           )}
 
           {todos.map((todo) => (
@@ -41,7 +44,7 @@ const ShowTodoList = () => {
                 <input
                   type="checkbox"
                   checked={todo.completed}
-                  onChange={() => toggleTodo(todo.id)}
+                  onChange={() => dispatch(toggleTodo(todo.id))}
                   className="w-5 h-5 text-indigo-600 rounded"
                 />
                 <div>
@@ -54,7 +57,7 @@ const ShowTodoList = () => {
 
               <div className="flex items-center gap-2">
                 <button
-                  onClick={() => removeTodo(todo.id)}
+                  onClick={() => dispatch(removeTodo(todo.id))}
                   className="text-sm text-red-500 hover:underline"
                 >
                   Delete
@@ -64,12 +67,10 @@ const ShowTodoList = () => {
           ))}
         </section>
 
-        <footer className="mt-4 text-sm text-gray-500 font-bold text-center">
-          {todos.length} task{todos.length !== 1 ? 's' : ''}
-        </footer>
+        <footer className="mt-4 text-sm text-gray-500 text-center">{todos.length} task{todos.length !== 1 ? 's' : ''}</footer>
       </div>
     </div>
   )
 }
 
-export default ShowTodoList
+export default ShowTodoListRTK
