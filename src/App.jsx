@@ -1,14 +1,14 @@
 import React from 'react'
-// To switch between Context and RTK implementations, comment/uncomment below imports
-import { Provider } from 'react-redux'
+import { TodoProvider } from './context/TodoContext'
 import store from './rtk/store'
+import ShowTodoList from './components/ShowTodoList'
 import ShowTodoListRTK from './rtk/ShowTodoListRTK'
+import Sidebar from './components/Sidebar'
 
 const App = () => {
   return (
-    <Provider store={store}>
-      <ShowTodoListRTK />
-    </Provider>
+      
+      <Sidebar/>
   )
 }
 

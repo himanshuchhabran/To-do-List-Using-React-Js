@@ -2,7 +2,7 @@ import { createSlice } from '@reduxjs/toolkit'
 
 const load = () => {
   try {
-    const raw = localStorage.getItem('rtk_todos_v1')
+    const raw = localStorage.getItem('rtk_todos')
     return raw ? JSON.parse(raw) : []
   } catch (e) {
     return []
@@ -21,8 +21,12 @@ const todosSlice = createSlice({
       if (t) t.completed = !t.completed
     },
     removeTodo: (state, action) => state.filter((t) => t.id !== action.payload),
+    editTodo: (state, action) => {
+      const t = state.find((s) => s.id === action.payload.id)
+      if (t) t.text = action.payload.text
+    },
   },
 })
 
-export const { addTodo, toggleTodo, removeTodo } = todosSlice.actions
+export const { addTodo, toggleTodo, removeTodo, editTodo } = todosSlice.actions
 export default todosSlice.reducer

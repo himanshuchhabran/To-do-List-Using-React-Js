@@ -31,8 +31,12 @@ export const TodoProvider = ({ children }) => {
     setTodos((s) => s.filter((t) => t.id !== id))
   }
 
+  const editTodo = (id, text) => {
+    setTodos((s) => s.map((t) => (t.id === id ? { ...t, text } : t)))
+  }
+
   return (
-    <TodoContext.Provider value={{ todos, addTodo, toggleTodo, removeTodo }}>
+    <TodoContext.Provider value={{ todos, addTodo, toggleTodo, removeTodo, editTodo }}>
       {children}
     </TodoContext.Provider>
   )
